@@ -1,0 +1,14 @@
+# never commit secrets or local tool settings
+.env
+*.env
+hf_token.txt
+openrouter_key.txt
+kaggle.json
+.claude/
+# data and checkpoints are rebuilt, not committed
+data/
+*.parquet
+*.jsonl
+*.safetensors
+*.pt
+__pycache__/

@@ -1,0 +1,153 @@
+{
+  "val_threshold_fpr2": 0.6021,
+  "benchmarks": {
+    "aegis_test": {
+      "n": 1913,
+      "pos": 1030,
+      "f1@0.5": 0.8512,
+      "precision@0.5": 0.8443,
+      "recall@0.5": 0.8583,
+      "fpr@0.5": 0.1846,
+      "f1@val": 0.8502,
+      "precision@val": 0.8661,
+      "recall@val": 0.835,
+      "fpr@val": 0.1506,
+      "auroc": 0.9178
+    },
+    "deepset_test": {
+      "n": 116,
+      "pos": 60,
+      "f1@0.5": 0.4416,
+      "precision@0.5": 1.0,
+      "recall@0.5": 0.2833,
+      "fpr@0.5": 0.0,
+      "f1@val": 0.3784,
+      "precision@val": 1.0,
+      "recall@val": 0.2333,
+      "fpr@val": 0.0,
+      "auroc": 0.8293
+    },
+    "indirect_injection_heldout": {
+      "n": 1655,
+      "pos": 800,
+      "f1@0.5": 0.9751,
+      "precision@0.5": 0.9948,
+      "recall@0.5": 0.9563,
+      "fpr@0.5": 0.0047,
+      "f1@val": 0.9706,
+      "precision@val": 0.9948,
+      "recall@val": 0.9475,
+      "fpr@val": 0.0047,
+      "auroc": 0.9965
+    },
+    "jbb_attack_prompts": {
+      "n": 300,
+      "pos": 300,
+      "flag_rate@0.5": 0.6733,
+      "flag_rate@val": 0.6433
+    },
+    "jbb_behaviors": {
+      "n": 200,
+      "pos": 100,
+      "f1@0.5": 0.768,
+      "precision@0.5": 0.64,
+      "recall@0.5": 0.96,
+      "fpr@0.5": 0.54,
+      "f1@val": 0.7837,
+      "precision@val": 0.6621,
+      "recall@val": 0.96,
+      "fpr@val": 0.49,
+      "auroc": 0.9351
+    },
+    "llmail_phase2": {
+      "n": 1000,
+      "pos": 1000,
+      "flag_rate@0.5": 0.99,
+      "flag_rate@val": 0.99
+    },
+    "orbench_hard1k": {
+      "n": 1319,
+      "pos": 0,
+      "flag_rate@0.5": 0.1274,
+      "flag_rate@val": 0.1099
+    },
+    "qualifire": {
+      "n": 4993,
+      "pos": 1996,
+      "f1@0.5": 0.9144,
+      "precision@0.5": 0.9004,
+      "recall@0.5": 0.9289,
+      "fpr@0.5": 0.0684,
+      "f1@val": 0.9121,
+      "precision@val": 0.9144,
+      "recall@val": 0.9098,
+      "fpr@val": 0.0567,
+      "auroc": 0.9825
+    },
+    "toxicchat_test": {
+      "n": 4972,
+      "pos": 354,
+      "f1@0.5": 0.7259,
+      "precision@0.5": 0.6381,
+      "recall@0.5": 0.8418,
+      "fpr@0.5": 0.0366,
+      "f1@val": 0.7221,
+      "precision@val": 0.6683,
+      "recall@val": 0.7853,
+      "fpr@val": 0.0299,
+      "auroc": 0.9724
+    },
+    "wildguardtest": {
+      "n": 1699,
+      "pos": 754,
+      "f1@0.5": 0.8696,
+      "precision@0.5": 0.8959,
+      "recall@0.5": 0.8448,
+      "fpr@0.5": 0.0783,
+      "f1@val": 0.8652,
+      "precision@val": 0.9033,
+      "recall@val": 0.8302,
+      "fpr@val": 0.0709,
+      "auroc": 0.9343
+    },
+    "xstest": {
+      "n": 450,
+      "pos": 200,
+      "f1@0.5": 0.7969,
+      "precision@0.5": 0.8201,
+      "recall@0.5": 0.775,
+      "fpr@0.5": 0.136,
+      "f1@val": 0.817,
+      "precision@val": 0.8701,
+      "recall@val": 0.77,
+      "fpr@val": 0.092,
+      "auroc": 0.9327
+    },
+    "ALL": {
+      "n": 18617,
+      "pos": 6594,
+      "f1@0.5": 0.8827,
+      "precision@0.5": 0.8713,
+      "recall@0.5": 0.8944,
+      "fpr@0.5": 0.0724,
+      "f1@val": 0.8827,
+      "precision@val": 0.8881,
+      "recall@val": 0.8773,
+      "fpr@val": 0.0606,
+      "auroc": 0.9675
+    }
+  },
+  "category": {
+    "macro_f1": 0.847,
+    "per_class_f1": {
+      "benign": 0.9342,
+      "prompt_injection": 0.9709,
+      "jailbreak": 0.7088,
+      "harmful_request": 0.7743
+    },
+    "accuracy": 0.9029
+  },
+  "latency_ms_p50": 33.6,
+  "latency_ms_p95": 43.7,
+  "eval_seconds": 689.9
+}
