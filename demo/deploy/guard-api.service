@@ -1,0 +1,15 @@
+[Unit]
+Description=Laya Agent Guard API + frontend
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/opt/agent-guard/web
+Environment=HF_HOME=/opt/agent-guard/hf-cache
+ExecStart=/opt/agent-guard/venv/bin/uvicorn server:app --host 127.0.0.1 --port 8000 --proxy-headers --forwarded-allow-ips=127.0.0.1
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

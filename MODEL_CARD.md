@@ -30,6 +30,8 @@ A small guardrail model that sits in front of an AI agent and checks every piece
 
 It's a fine-tune of [`convaiinnovations/laya`](https://huggingface.co/convaiinnovations/laya), a non-autoregressive decision model: a ModernBERT-large encoder plus a small decision head, 421M parameters in total. It answers in one forward pass (about **34 ms** median on a T4 GPU) and returns calibrated probabilities.
 
+**🔴 Try it live: [guard.ankitrajai.in](https://guard.ankitrajai.in)** · Dataset: [agent-guard-open-data](https://huggingface.co/datasets/ankitkr225/agent-guard-open-data) · Code: [GitHub](https://github.com/ankit-raj00/laya-agent-guard)
+
 A second variant trained with Laya's RLCD objective is at [`ankitkr225/laya-agent-guard-rlcd`](https://huggingface.co/ankitkr225/laya-agent-guard-rlcd). Its overall numbers are almost the same (see below).
 
 ![Headline comparison](assets/headline_comparison.png)
@@ -126,7 +128,7 @@ Suggested policy: block when P(attack) ≥ 0.5. Send borderline cases (for examp
 - AESLC (Enron emails)
 - synthetic injected/clean document pairs built from those carriers
 
-The labelling rules are in [`LABEL_SPEC.md`](https://github.com/ankit-raj00/laya-agent-guard/blob/main/LABEL_SPEC.md). The dataset itself is not redistributed, because several sources are gated or licensed non-commercial. The [build script](https://github.com/ankit-raj00/laya-agent-guard) recreates it.
+The labelling rules are in [`LABEL_SPEC.md`](https://github.com/ankit-raj00/laya-agent-guard/blob/main/LABEL_SPEC.md). A redistributable subset (64.5k train rows, per-row licences, gated) is published as [agent-guard-open-data](https://huggingface.co/datasets/ankitkr225/agent-guard-open-data). The full training set also includes sources that can't be redistributed (xTRam1, AESLC), and the [build script](https://github.com/ankit-raj00/laya-agent-guard) recreates it.
 
 ## Limitations
 

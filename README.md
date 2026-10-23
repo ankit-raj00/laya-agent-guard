@@ -4,7 +4,10 @@ A guardrail model for AI agents. It reads any text an agent is about to act on (
 
 It was built by fine-tuning [Laya](https://huggingface.co/convaiinnovations/laya), a 421M-parameter non-autoregressive decision model (ModernBERT-large + a small decision head), on 78k labelled examples from 13 public datasets plus synthetic indirect-injection data. Everything ran on free Kaggle GPUs.
 
+**🔴 Try it live: [guard.ankitrajai.in](https://guard.ankitrajai.in)**
+
 **Models:** [laya-agent-guard-softce](https://huggingface.co/ankitkr225/laya-agent-guard-softce) (main) · [laya-agent-guard-rlcd](https://huggingface.co/ankitkr225/laya-agent-guard-rlcd)
+**Dataset:** [agent-guard-open-data](https://huggingface.co/datasets/ankitkr225/agent-guard-open-data) (64.5k train / 3.4k val / 12.7k test, per-row licences, gated)
 
 ![Headline comparison](assets/headline_comparison.png)
 
@@ -26,6 +29,7 @@ src/01_data_prep.py                build train / val / test with the label rules
 src/02_finetune_laya.py            fine-tune Laya twice in parallel (RLCD on GPU 0, soft-CE on GPU 1), calibrate, push
 src/02b_finetune_modernbert_control.py   control: plain ModernBERT-large classifier on the same data
 src/03_eval_guard.py               evaluate any model on the 11 benchmarks (F1, AUROC, FPR, latency, 4-class report)
+demo/                              the live demo: FastAPI backend, single-page frontend, deploy configs (see demo/README.md)
 ```
 
 Each script runs as a Kaggle script kernel (GPU T4 ×2, internet on). Steps:
@@ -50,7 +54,24 @@ ModernBERT reads it all bidirectionally. Two extra Transformer layers let the bo
 
 ## Data and licences
 
-The dataset isn't redistributed. Some sources are gated (WildGuardMix, XSTest, Qualifire), some are non-commercial (ToxicChat, Qualifire) and some have no stated licence (xTRam1 safe-guard, AESLC). `src/01_data_prep.py` rebuilds it after you accept each source's terms.
+**Open subset on Hugging Face:** [ankitkr225/agent-guard-open-data](https://huggingface.co/datasets/ankitkr225/agent-guard-open-data)
+
+| Split | Rows | Labels |
+|---|---|---|
+| train | 64,534 | benign 36,660 · prompt_injection 12,029 · harmful_request 9,950 · jailbreak 5,895 |
+| validation | 3,396 | |
+| test | 12,674 | 9 benchmarks |
+
+```python
+from datasets import load_dataset
+ds = load_dataset("ankitkr225/agent-guard-open-data")   # accept the terms on the dataset page first
+```
+
+- Every row keeps its source licence in a `license` column. The ToxicChat rows are non-commercial and the Dolly-derived rows are share-alike, so you can filter on `license` for your use case.
+- Access is gated: you agree to the source datasets' terms before downloading.
+- The data files are deliberately not stored in this GitHub repo, so that gate can't be skipped.
+
+The models were trained on a larger version (77,997 train rows). That version also includes sources that can't be redistributed: xTRam1 safe-guard and AESLC (no stated licence), plus the XSTest and Qualifire test sets (gated / non-commercial). `src/01_data_prep.py` rebuilds that full version after you accept each source's terms.
 
 - **Code in this repo:** Apache-2.0.
 - **Model weights:** CC BY-NC 4.0, because of the ToxicChat training data.

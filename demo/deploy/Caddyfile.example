@@ -1,0 +1,6 @@
+# /etc/caddy/Caddyfile -- Caddy gets and renews the HTTPS certificate automatically
+# once your domain's A record points at the server.
+guard.example.com {
+	encode gzip
+	reverse_proxy 127.0.0.1:8000
+}
